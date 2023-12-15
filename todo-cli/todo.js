@@ -39,7 +39,10 @@ const todoList = () => {
   };
 
   const toDisplayableList = (items) => {
-    return items.map(item => `- ${item.title} (Due: ${item.dueDate})`).join('\n');
+    return items.map(item => {
+      const status = item.completed ? '[x]' : '[ ]';
+      return `${status} ${item.title} ${item.dueDate ? item.dueDate : ''}`;
+    }).join('\n');
   };
 
   return {

@@ -10,23 +10,23 @@ const todoList = require("../todo");
 const { all, markAsComplete, add, overdue,
     dueToday,
     dueLater } = todoList();
-const TODAY3 = new Date(); 
-const ONEDAY_3 = 60 * 60 * 24 * 1000;
+const today = new Date(); 
+const oneDay = 60 * 60 * 24 * 1000;
 describe("todoList", () => {
   beforeAll(() => {
-    const TODAY3 = new Date();
+    const today = new Date();
      //referred to discord forum for this line of code
     add({
       title: "Test todo",
       completed: false,
-      dueDate: new Date(TODAY3.getTime() - 1 * ONEDAY_3).toLocaleDateString(
+      dueDate: new Date(today.getTime() - 1 * oneDay).toLocaleDateString(
         "en-CA",
       ),
     });
     add({
       title: "Test todo2",
       completed: false,
-      dueDate: new Date(TODAY3.getTime() + 1 * ONEDAY_3).toLocaleDateString(
+      dueDate: new Date(today.getTime() + 1 * oneDay).toLocaleDateString(
         "en-CA",
       ),
     });
@@ -55,7 +55,7 @@ describe("todoList", () => {
     add({
         title: "Test todo",
         completed: false,
-        dueDate: new Date(TODAY3.getTime() - 1 * ONEDAY_3).toLocaleDateString(
+        dueDate: new Date(today.getTime() - 1 * oneDay).toLocaleDateString(
           "en-CA",
         ),
       });
@@ -75,7 +75,7 @@ describe("todoList", () => {
     add({
         title: "Test todo2",
         completed: false,
-        dueDate: new Date(today.getTime() + 2 * ONEDAY_3)
+        dueDate: new Date(today.getTime() + 2 * oneDay)
         .toISOString()
         .slice(0, 10),
       });

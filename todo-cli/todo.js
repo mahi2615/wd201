@@ -1,55 +1,60 @@
 /* eslint-disable no-undef */
-const todoList = () => {
-  all = [];
 
-  const add = (todoItem) => {
-    all.push(todoItem);
+const createTodoList = () => {
+  const tasks = [];
+
+  const addTask = (task) => {
+    tasks.push(task);
   };
 
-  const markAsComplete = (index) => {
-    all[index].completed = true;
+  const markTaskAsComplete = (index) => {
+    if (tasks[index]) {
+      tasks[index].completed = true;
+    }
   };
 
-  const overdue = () => {
+  const getOverdueTasks = () => {
     const today = new Date().toISOString().split("T")[0];
-    return all.filter((todo) => !todo.completed && todo.dueDate < today);
+    return tasks.filter((task) => !task.completed && task.dueDate < today);
   };
 
-  const dueToday = () => {
+  const getTasksDueToday = () => {
     const today = new Date().toISOString().split("T")[0];
-    return all.filter((todo) => todo.dueDate === today);
+    return tasks.filter((task) => task.dueDate === today);
   };
 
-  const dueLater = () => {
+  const getTasksDueLater = () => {
     const today = new Date().toISOString().split("T")[0];
-    return all.filter((todo) => !todo.completed && todo.dueDate > today);
+    return tasks.filter((task) => !task.completed && task.dueDate > today);
   };
 
-  const toDisplayableList = (list) => {
-    return list
-      .map((todo) => {
-        const status = todo.completed ? "[x]" : "[ ]";
+  const formatTaskList = (taskList) => {
+    return taskList
+      .map((task) => {
+        const status = task.completed ? "[x]" : "[ ]";
         const excludeDueDate = ["pay rent", "service vehicle"];
         const dueDate =
-          !excludeDueDate.includes(todo.title.toLowerCase()) && todo.dueDate
-            ? " " + formattedDate(new Date(todo.dueDate))
+          !excludeDueDate.includes(task.title.toLowerCase()) && task.dueDate
+            ? " " + formatDate(new Date(task.dueDate))
             : "";
-        return` ${status} ${todo.title}${dueDate}`;
+        return ` ${status} ${task.title}${dueDate}`;
       })
       .join("\n");
   };
-  const formattedDate = (d) => {
-    return d.toISOString().split("T")[0];
+
+  const formatDate = (date) => {
+    return date.toISOString().split("T")[0];
   };
 
   return {
-    all,
-    add,
-    markAsComplete,
-    overdue,
-    dueToday,
-    dueLater,
-    toDisplayableList,
+    tasks,
+    addTask,
+    markTaskAsComplete,
+    getOverdueTasks,
+    getTasksDueToday,
+    getTasksDueLater,
+    formatTaskList,
   };
 };
-module.exports = todoList;
+
+module.exports = createTodoList;

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const todoList = () => {
   all = [];
 
@@ -13,7 +12,7 @@ const todoList = () => {
   const overdue = () => {
     const today = new Date().toISOString().split("T")[0];
     return all.filter((todo) => !todo.completed && todo.dueDate < today);
-  }; 
+  };
 
   const dueToday = () => {
     const today = new Date().toISOString().split("T")[0];
@@ -34,12 +33,12 @@ const todoList = () => {
           !excludeDueDate.includes(todo.title.toLowerCase()) && todo.dueDate
             ? " " + formattedDate(new Date(todo.dueDate))
             : "";
-        return` ${status} ${todo.title}${dueDate}`;
+        return `${status} ${todo.title}${dueDate}`;
       })
       .join("\n");
   };
-  const formattedDate = (data) => {
-    return data.toISOString().split("T")[0];
+  const formattedDate = (d) => {
+    return d.toISOString().split("T")[0];
   };
 
   return {
@@ -50,6 +49,6 @@ const todoList = () => {
     dueToday,
     dueLater,
     toDisplayableList,
-  };
-};
+  };
+}
 module.exports = todoList;

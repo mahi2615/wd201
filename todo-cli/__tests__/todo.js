@@ -1,11 +1,4 @@
-/* eslint-disable space-in-parens */
-/* eslint-disable object-curly-spacing */
-/* eslint-disable eol-last */
-/* eslint-disable padded-blocks */
-/* eslint-disable semi */
-/* eslint-disable indent */
-/* eslint-disable quotes */
-/* eslint-disable no-undef */
+
 const todoList = require("../todo");
 const { all, markAsComplete, add, overdue,
     dueToday,
